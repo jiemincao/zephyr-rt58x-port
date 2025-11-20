@@ -1,0 +1,19 @@
+# ST Microelectronics STM32F1 MCU line
+
+# Copyright (c) 2016 Open-RnD Sp. z o.o.
+# Copyright (c) RnDity Sp. z o.o.
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_SERIES_RT582
+	bool
+	select SOC_FAMILY_RT58X
+
+config SOC_SERIES
+	default "rt582" if SOC_SERIES_RT582
+
+config SOC_RT582
+	bool
+	select SOC_SERIES_RT582
+	
+config SOC
+	default "rt582" if SOC_RT582

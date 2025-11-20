@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_RT582
+
+config NUM_IRQS
+	default 32
+
+endif # SOC_RT582
