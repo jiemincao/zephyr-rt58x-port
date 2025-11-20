@@ -1,0 +1,15 @@
+board:
+  name: rt582_evk
+  vendor: rafael
+  # revision:
+  #   format: <major.minor.patch|letter|number|custom>
+  #   default: <default-revision-value>
+  #   exact: <true|false>
+  #   revisions:
+  #   - name: <revA>
+  socs:
+  - name: rt582
+    # variants:
+    # - name: <variant-1>
+    #   variants:
+    #   - name: <sub-variant-2-1>

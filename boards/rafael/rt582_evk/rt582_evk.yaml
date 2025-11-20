@@ -1,0 +1,10 @@
+identifier: rt582_evk
+name: RT58X EVK Board
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+ram: 144
+flash: 10000
+vendor: rt
