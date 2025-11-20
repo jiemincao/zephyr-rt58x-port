@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config UART_RT58X
+    bool "Rafael Micro RT58x UART driver"
+    default y
+    depends on DT_HAS_RAFAEL_RT58X_UART_ENABLED
+    select SERIAL_HAS_DRIVER
+    select SERIAL_SUPPORT_INTERRUPT
+    help
+      Enable the UART driver for the RT58X SoC.

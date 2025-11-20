@@ -1,0 +1,12 @@
+description: Rafael Micro RT58x UART
+
+compatible: "rafael,rt58x-uart"
+
+include: uart-controller.yaml
+
+properties:
+  reg:
+    required: true
+
+  interrupts:
+    required: true
