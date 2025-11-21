@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2024 Rafael Microelectronics Inc.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <arm/armv7-m.dtsi>
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <zephyr/dt-bindings/i2c/i2c.h>
+#include <mem.h>
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-m3";
+			reg = <0>;
+		};
+	};
+
+	/* SRAM: 0x20000000, Size 144KB (from rt582.ld) */
+	sram0: memory@20000000 {
+		compatible = "zephyr,memory-region", "mmio-sram";
+		reg = <0x20000000 DT_SIZE_K(144)>;
+		zephyr,memory-region = "SRAM0";
+	};
+
+	soc {
+		/* Flash: 0x00000000 (Mapped Address), Size 1MB (Example) */
+		flash0: flash@0 {
+			compatible = "soc-nv-flash";
+			reg = <0x00000000 DT_SIZE_K(1024)>; 
+			
+			write-block-size = <4>;
+			erase-block-size = <4096>;
+		};
+
+		/* GPIO Controller: 0x40000000 */
+		gpio0: gpio@40000000 {
+			compatible = "rafael,rt58x-gpio";
+			reg = <0x40000000 0x100>; 
+			interrupts = <0 0>; /* Gpio_IRQn = 0 */
+			gpio-controller;
+			#gpio-cells = <2>;
+			ngpios = <32>;
+			status = "disabled";
+			label = "GPIO_0";
+		};
+		
+		/* UART0: 0xA0000000, Size 0x48 */
+		uart0: serial@a0000000 {
+			compatible = "rafael,rt58x-uart";
+			reg = <0xa0000000 0x48>;
+			interrupts = <4 0>;       /* Uart0_IRQn = 4 */
+			status = "disabled";
+			label = "UART_0";
+		};
+
+		/* UART1: 0xA0500000, Size 0x20 */
+		uart1: serial@a0500000 {
+			compatible = "rafael,rt58x-uart";
+			reg = <0xa0500000 0x20>;
+			interrupts = <7 0>;       /* Uart1_IRQn = 7 */
+			status = "disabled";
+			label = "UART_1";
+		};
+
+		/* UART2: 0xA0600000, Size 0x20 */
+		uart2: serial@a0600000 {
+			compatible = "rafael,rt58x-uart";
+			reg = <0xa0600000 0x20>;
+			interrupts = <19 0>;      /* Uart2_IRQn = 19 */
+			status = "disabled";
+			label = "UART_2";
+		};
+
+		/* SysCtrl: 0x40800000 (SYSCTRL_BASE) */
+        sysctrl: sysctrl@40800000 {
+            compatible = "rafael,rt58x-sysctrl";
+            reg = <0x40800000 0x94>;
+            label = "SYSCTRL";
+        };
+	};
+};
+
+&nvic {
+	arm,num-irq-priority-bits = <3>; /* __NVIC_PRIO_BITS = 3 from mcu.h */
+};

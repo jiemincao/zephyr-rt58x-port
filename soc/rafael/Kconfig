@@ -1,0 +1,10 @@
+# Copyright (c) 2024 STMicroelectronics
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_FAMILY_RT58X
+
+if SOC_FAMILY_RT58X
+
+rsource "*/Kconfig"
+
+endif # SOC_FAMILY_RT58X

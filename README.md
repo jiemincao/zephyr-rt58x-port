@@ -40,11 +40,11 @@ After the installation is complete, go to the workspace and build the sample:
 
 ```bash
 # Enter workspace
-cd ../zephyr_ws
+cd zephyr_ws
 source zephyr/zephyr-env.sh
 
 # Build Hello World
-west build -b rt582_evk samples/hello_world
+west build -b rt582_evk zephyr/samples/hello_world
 ```
 
 ### Flashing Instructions

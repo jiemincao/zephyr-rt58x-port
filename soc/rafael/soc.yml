@@ -1,0 +1,6 @@
+family:
+- name: rafael
+  series:
+  - name: rt58x
+    socs:
+    - name: rt582
